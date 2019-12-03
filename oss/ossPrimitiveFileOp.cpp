@@ -124,7 +124,7 @@ exit:
 
 err_read:
 	*pBytesRead = 0;
-	reval = errno;
+	retval = errno;
 	goto exit;
 }
 

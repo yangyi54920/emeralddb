@@ -83,3 +83,5 @@ class ossPrimitiveFileOp
         }
 
 };
+
+#endif
