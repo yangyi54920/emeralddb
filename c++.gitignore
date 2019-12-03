@@ -33,9 +33,9 @@
 
 #user define
 *.scan
-emeralddb
-*.log
-.po
-.cache
-.in
+config.log
+*.po
+autom4te.cache
+*.in
 Makefile
+emeralddb
