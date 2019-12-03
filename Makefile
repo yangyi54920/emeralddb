@@ -116,7 +116,8 @@ am_emeralddb_OBJECTS = pmd/emeralddb-pmdMain.$(OBJEXT) \
 	bson/src/lib/emeralddb-base64.$(OBJEXT) \
 	bson/src/lib/emeralddb-md5.$(OBJEXT) \
 	bson/src/lib/emeralddb-nonce.$(OBJEXT) \
-	oss/emeralddb-ossSocket.$(OBJEXT)
+	oss/emeralddb-ossSocket.$(OBJEXT) \
+	oss/emeralddb-ossPrimitiveFileOp.$(OBJEXT)
 emeralddb_OBJECTS = $(am_emeralddb_OBJECTS)
 emeralddb_DEPENDENCIES =
 emeralddb_LINK = $(CXXLD) $(emeralddb_CXXFLAGS) $(CXXFLAGS) \
@@ -304,7 +305,7 @@ emeralddb_SOURCES = \
     pmd/pmdMain.cpp  pmd/pmdTcpListener.cpp \
     bson/src/bsonobj.cpp bson/src/util/json.cpp bson/src/oid.cpp \
     bson/src/lib/base64.cpp bson/src/lib/md5.cpp bson/src/lib/nonce.cpp \
-	oss/ossSocket.cpp
+	oss/ossSocket.cpp oss/ossPrimitiveFileOp.cpp
 
 edb_SOURCES = \
 	client/edb.cpp client/command.cpp client/commandFactory.cpp\
@@ -492,6 +493,8 @@ bson/src/lib/emeralddb-nonce.$(OBJEXT): bson/src/lib/$(am__dirstamp) \
 	bson/src/lib/$(DEPDIR)/$(am__dirstamp)
 oss/emeralddb-ossSocket.$(OBJEXT): oss/$(am__dirstamp) \
 	oss/$(DEPDIR)/$(am__dirstamp)
+oss/emeralddb-ossPrimitiveFileOp.$(OBJEXT): oss/$(am__dirstamp) \
+	oss/$(DEPDIR)/$(am__dirstamp)
 
 emeralddb$(EXEEXT): $(emeralddb_OBJECTS) $(emeralddb_DEPENDENCIES) $(EXTRA_emeralddb_DEPENDENCIES) 
 	@rm -f emeralddb$(EXEEXT)
@@ -525,6 +528,7 @@ include client/$(DEPDIR)/edb-command.Po
 include client/$(DEPDIR)/edb-commandFactory.Po
 include client/$(DEPDIR)/edb-edb.Po
 include oss/$(DEPDIR)/edb-ossSocket.Po
+include oss/$(DEPDIR)/emeralddb-ossPrimitiveFileOp.Po
 include oss/$(DEPDIR)/emeralddb-ossSocket.Po
 include pmd/$(DEPDIR)/emeralddb-pmdMain.Po
 include pmd/$(DEPDIR)/emeralddb-pmdTcpListener.Po
@@ -810,6 +814,20 @@ oss/emeralddb-ossSocket.obj: oss/ossSocket.cpp
 #	$(AM_V_CXX)source='oss/ossSocket.cpp' object='oss/emeralddb-ossSocket.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(emeralddb_CXXFLAGS) $(CXXFLAGS) -c -o oss/emeralddb-ossSocket.obj `if test -f 'oss/ossSocket.cpp'; then $(CYGPATH_W) 'oss/ossSocket.cpp'; else $(CYGPATH_W) '$(srcdir)/oss/ossSocket.cpp'; fi`
+
+oss/emeralddb-ossPrimitiveFileOp.o: oss/ossPrimitiveFileOp.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(emeralddb_CXXFLAGS) $(CXXFLAGS) -MT oss/emeralddb-ossPrimitiveFileOp.o -MD -MP -MF oss/$(DEPDIR)/emeralddb-ossPrimitiveFileOp.Tpo -c -o oss/emeralddb-ossPrimitiveFileOp.o `test -f 'oss/ossPrimitiveFileOp.cpp' || echo '$(srcdir)/'`oss/ossPrimitiveFileOp.cpp
+	$(AM_V_at)$(am__mv) oss/$(DEPDIR)/emeralddb-ossPrimitiveFileOp.Tpo oss/$(DEPDIR)/emeralddb-ossPrimitiveFileOp.Po
+#	$(AM_V_CXX)source='oss/ossPrimitiveFileOp.cpp' object='oss/emeralddb-ossPrimitiveFileOp.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(emeralddb_CXXFLAGS) $(CXXFLAGS) -c -o oss/emeralddb-ossPrimitiveFileOp.o `test -f 'oss/ossPrimitiveFileOp.cpp' || echo '$(srcdir)/'`oss/ossPrimitiveFileOp.cpp
+
+oss/emeralddb-ossPrimitiveFileOp.obj: oss/ossPrimitiveFileOp.cpp
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(emeralddb_CXXFLAGS) $(CXXFLAGS) -MT oss/emeralddb-ossPrimitiveFileOp.obj -MD -MP -MF oss/$(DEPDIR)/emeralddb-ossPrimitiveFileOp.Tpo -c -o oss/emeralddb-ossPrimitiveFileOp.obj `if test -f 'oss/ossPrimitiveFileOp.cpp'; then $(CYGPATH_W) 'oss/ossPrimitiveFileOp.cpp'; else $(CYGPATH_W) '$(srcdir)/oss/ossPrimitiveFileOp.cpp'; fi`
+	$(AM_V_at)$(am__mv) oss/$(DEPDIR)/emeralddb-ossPrimitiveFileOp.Tpo oss/$(DEPDIR)/emeralddb-ossPrimitiveFileOp.Po
+#	$(AM_V_CXX)source='oss/ossPrimitiveFileOp.cpp' object='oss/emeralddb-ossPrimitiveFileOp.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(emeralddb_CXXFLAGS) $(CXXFLAGS) -c -o oss/emeralddb-ossPrimitiveFileOp.obj `if test -f 'oss/ossPrimitiveFileOp.cpp'; then $(CYGPATH_W) 'oss/ossPrimitiveFileOp.cpp'; else $(CYGPATH_W) '$(srcdir)/oss/ossPrimitiveFileOp.cpp'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
