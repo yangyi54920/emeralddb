@@ -76,6 +76,11 @@ void ossPrimitiveFileOp::openStdout()
 	_bIsStdout = true;
 }
 
+void ossPrimitiveFileOp::setToEnd(void)
+{
+	oss_lseek(_fileHandle, 0, SEEK_END);
+}
+
 offsetType ossPrimitiveFileOp::getCuttentOffset() const
 {
 	return oss_lseek(_fileHandle, 0, SEEK_CUR);
