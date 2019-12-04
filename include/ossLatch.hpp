@@ -51,7 +51,7 @@ class ossSLatch
     public:
         ossSLatch()
         {
-            pthread_rwlock_init(&_lock);
+            pthread_rwlock_init(&_lock, 0);
         }
 
         ~ossSLatch()

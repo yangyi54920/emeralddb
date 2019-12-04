@@ -76,7 +76,7 @@ void ossPrimitiveFileOp::openStdout()
 	_bIsStdout = true;
 }
 
-void ossPrimitiveFileOp::setToEnd(void)
+void ossPrimitiveFileOp::seekToEnd()
 {
 	oss_lseek(_fileHandle, 0, SEEK_END);
 }

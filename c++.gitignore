@@ -33,9 +33,9 @@
 
 #user define
 *.scan
-config.log
 *.po
-autom4te.cache
 *.in
 Makefile
 emeralddb
+config.log
+autom4te.cache
