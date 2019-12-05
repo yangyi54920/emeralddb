@@ -46,7 +46,7 @@ int pmdOptions::readCmd(int argc, char **argv,
 	}
 	catch(po::error &e)
 	{
-		std::ceer << "Error: " << e.what() << std::endl;
+		std::cerr << "Error: " << e.what() << std::endl;
 		rc = EDB_INVALIDARG;
 		goto error;
 	}

@@ -43,7 +43,7 @@ namespace po = boost::program_options;
 #define LOGFILENAME                    "diag.log"
 #define DBFILENAME                     "edb.data"
 #define SVCNAME                        "48127"
-#define NUMPOOL 					   "20"
+#define NUMPOOL 					   20
 
 class pmdOptions
 {
@@ -52,7 +52,7 @@ class pmdOptions
 		~pmdOptions();
 
 	public:
-		readCmd(int argc, char **argv,
+	    int	readCmd(int argc, char **argv,
 				po::options_description &desc,
 				po::variables_map &vm);
 		int importVM(const po::variables_map &vm, bool isDefault = true);
@@ -63,7 +63,7 @@ class pmdOptions
 
 	public:
 		//inline functions
-		inline char* getDBPath();
+		inline char* getDBPath()
 		{
 			return _dbPath;
 		}
