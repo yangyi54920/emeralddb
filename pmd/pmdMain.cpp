@@ -32,50 +32,6 @@ error:
 	
 }
 
-static int pmdSetupSignalHandler()
-{
-	int rc = EDB_OK;
-	struct sigaction newact;
-	memset(&newact, 0, sizeof(newact));
-	sigemptyset(&newact.sa_mask);
-
-	newact.sa_flags = 0;
-	newact.sa_handler = (_sighandler_t)pmdSignalHandler;
-	for(int i = 0; i < PMD_MAX_SIGNALS, ++i)
-	{
-		sigaction(i+1, &newact, NULL);
-	}
-
-	return rc;
-}
-
-int pmdMasterThreadMain(int argc, char **argv)
-{
-	int rc = EDB_Ok;
-	EDB_KRCB *krcb = pmdGetKRCB();
-
-	//signal handler
-	rc = pmdSetupSignalHandler();
-	PD_RC_CHECK(rc, PDERROR, "Failed to setup signal handler, rc = %d", rc);
-
-	//arguments
-	rc = pmdResolveArguments(argc, argv);
-	if(EDB_PMD_HELP_ONLY == rc)
-	{
-		goto done;
-	}
-
-	PD_RC_CHECK(rc, PDERROR, "Failed to resolve argument, rc = %d", rc);
-	while(EDB_IS_DB_UP)
-	{
-		sleep(1);
-	}
-done:
-	return rc;
-error:
-	goto done;
-}
-
 struct _signalInfo
 {
 	const char *name;
@@ -163,6 +119,51 @@ static void pmdSignalHandler(int sigNum)//信号处理函数
 		}
 	}
 }
+
+static int pmdSetupSignalHandler()
+{
+	int rc = EDB_OK;
+	struct sigaction newact;
+	memset(&newact, 0, sizeof(newact));
+	sigemptyset(&newact.sa_mask);
+
+	newact.sa_flags = 0;
+	newact.sa_handler = (__sighandler_t)pmdSignalHandler;
+	for(int i = 0; i < PMD_MAX_SIGNALS; ++i)
+	{
+		sigaction(i+1, &newact, NULL);
+	}
+
+	return rc;
+}
+
+int pmdMasterThreadMain(int argc, char **argv)
+{
+	int rc = EDB_OK;
+    EDB_KRCB *krcb = pmdGetKRCB();
+
+	//signal handler
+	rc = pmdSetupSignalHandler();
+	PD_RC_CHECK(rc, PDERROR, "Failed to setup signal handler, rc = %d", rc);
+
+	//arguments
+	rc = pmdResolveArguments(argc, argv);
+	if(EDB_PMD_HELP_ONLY == rc)
+	{
+		goto done;
+	}
+
+	PD_RC_CHECK(rc, PDERROR, "Failed to resolve argument, rc = %d", rc);
+	while(EDB_IS_DB_UP)
+	{
+		sleep(1);
+	}
+done:
+	return rc;
+error:
+	goto done;
+}
+
 
 int main(int argc, char **argv)
 {   

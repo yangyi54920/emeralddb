@@ -17,7 +17,7 @@ enum EDB_DB_STATUS
 #define EDB_IS_DB_DOWN (EDB_DB_SHUTDOWN == pmdGetKRCB()->getDBStatus() || \
 						EDB_DB_PANIC == pmdGetKRCB()->getDBStatus())
 #define EDB_IS_DB_UP (!EDB_IS_DB_DOWN)
-#define EDB_SHUTDOWN_DB (pmdGetKRCB()->setDBStatus(EDB_DB_SHUTDOWN);)
+#define EDB_SHUTDOWN_DB (pmdGetKRCB()->setDBStatus(EDB_DB_SHUTDOWN))
 
 class pmdOptions;
 class EDB_KRCB
@@ -92,7 +92,7 @@ class EDB_KRCB
 			strncpy(_svcName, pName, sizeof(_svcName));
 		}
 
-		void set MaxPool(int maxPool)
+		void setMaxPool(int maxPool)
 		{
 			_maxPool = maxPool;
 		}
